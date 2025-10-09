@@ -1,0 +1,63 @@
+baseURL = "https://sozenh.github.io/"
+languageCode = "zh-CN"
+title = "我的技术博客"
+theme = "PaperMod"
+paginate = 10
+
+[params]
+  description = "分享技术经验、学习笔记和项目实践"
+  author = "sozenh"
+
+  # PaperMod 主题配置
+  defaultTheme = "auto"  # auto, light, dark
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowToc = true
+  TocOpen = true
+
+  # 主页配置
+  [params.homeInfoParams]
+    Title = "欢迎来到我的技术博客 👋"
+    Content = "分享技术经验、学习笔记和项目实践"
+
+  # 社交链接
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/sozenh"
+
+[menu]
+  [[menu.main]]
+    name = "🏠 首页"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "📚 归档"
+    url = "/archives/"
+    weight = 2
+
+  [[menu.main]]
+    name = "🔍 搜索"
+    url = "/search/"
+    weight = 3
+
+  [[menu.main]]
+    name = "🏷️ 标签"
+    url = "/tags/"
+    weight = 4
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+    lineNumbersInTable = true
+  [markup.tableOfContents]
+    endLevel = 6
+    startLevel = 2
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
