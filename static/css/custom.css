@@ -272,18 +272,23 @@ body:not(.home-page) {
   margin: 1.5rem 0;
 }
 
-/* 链接样式 */
+/* 链接样式 - 增强可见性 */
 .markdown a {
   color: var(--primary-color);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1.5px solid var(--primary-light);
   transition: all 0.2s ease;
   font-weight: 500;
+  padding-bottom: 1px;
 }
 
 .markdown a:hover {
   color: var(--primary-dark);
-  border-bottom-color: var(--primary-light);
+  border-bottom-color: var(--primary-dark);
+  background: rgba(102, 126, 234, 0.08);
+  padding: 2px 4px;
+  margin: -2px -4px;
+  border-radius: 3px;
 }
 
 /* 引用块样式 */
