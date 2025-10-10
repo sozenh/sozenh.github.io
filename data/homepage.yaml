@@ -1,0 +1,44 @@
+# ==================== 首页配置文件 ====================
+# 在这里修改首页的所有文本内容，不需要修改代码
+
+# 导航栏
+nav:
+  site_title: "sozenh"
+  tech_link: "技术"
+  essay_link: "随笔"
+  contact_link: "联系我"
+
+# 英雄区域（首页顶部大标题区域）
+hero:
+  # 头像设置：可以选择使用emoji或GitHub头像
+  avatar_type: "github"  # 可选: "emoji" 或 "github"
+  avatar_emoji: "👨‍💻"  # 当 avatar_type 为 "emoji" 时使用
+  github_username: "sozenh"  # 当 avatar_type 为 "github" 时使用，填写你的GitHub用户名
+
+  title: "你好，这里是sozenh"
+  subtitle: "一个热爱技术、热爱编程的开发者"
+  description: "在这里，我分享关于 <strong>Go</strong>、<strong>Kubernetes</strong>、<strong>云原生</strong> 等领域的技术文章和心得。<br>记录学习过程，分享实践经验，与你一起成长。"
+
+  # 按钮文本
+  tech_button: "📚 技术文章"
+  essay_button: "✍️ 随笔感悟"
+
+# 最新文章区域
+articles:
+  max_display: 6
+  section_title: "最新文章"
+
+# 页脚
+footer:
+  copyright: "持续学习，不断进步 🌱"
+
+# 联系方式
+contact:
+  modal_title: "联系我"
+  email:
+    label: "邮箱"
+    address: "suhouzhen2020@gmail.com"
+  github:
+    label: "GitHub"
+    url: "https://github.com/sozenh"
+    display: "https://github.com/sozenh"
