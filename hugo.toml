@@ -1,63 +1,71 @@
 baseURL = "https://sozenh.github.io/"
-languageCode = "zh-CN"
 title = "我的技术博客"
-theme = "PaperMod"
-paginate = 10
+theme = "hugo-book"
+
+# Book configuration
+disablePathToLower = true
+enableGitInfo = false
+
+# Needed for mermaid/katex shortcodes
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+  [markup.highlight]
+    # 代码高亮主题配置 (Chroma)
+    # 可选主题:
+    #   亮色: github, friendly, tango, xcode, vs, monokailight, autumn
+    #   暗色: dracula, monokai, native, vim, solarized-dark, paraiso-dark
+    #   经典: emacs, vim, pygments
+    # 完整列表: https://xyproto.github.io/splash/docs/all.html
+    #
+    # 推荐组合:
+    #   - github: 清爽的亮色主题，适合浅色主题（低饱和度）
+    #   - friendly: 柔和的亮色主题（低饱和度）
+    #   - tango: 温和的配色（中等饱和度）
+    #   - solarized-dark: 护眼的深色主题（低饱和度）
+    #   - dracula: 优雅的紫黑风格，适合深色主题（高饱和度）
+    style = 'friendly'
+    lineNos = false             # 不显示行号，更简洁
+    lineNumbersInTable = true   # 使用表格方式渲染行号（更易复制代码）
+    anchorLineNos = false       # 行号是否可点击
+    codeFences = true           # 启用代码围栏
+    guessSyntax = true          # 自动猜测语法高亮
+    hl_Lines = ""               # 高亮特定行
+    noClasses = true            # 使用内联样式而非 CSS 类
 
 [params]
-  description = "分享技术经验、学习笔记和项目实践"
-  author = "sozenh"
+  # Sets color theme: light, dark or auto
+  BookTheme = "auto"
 
-  # PaperMod 主题配置
-  defaultTheme = "auto"  # auto, light, dark
-  ShowReadingTime = true
-  ShowShareButtons = true
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowRssButtonInSectionTermList = true
-  ShowToc = true
-  TocOpen = true
+  # Controls table of contents visibility on right side of pages
+  BookToC = true
 
-  # 主页配置
-  [params.homeInfoParams]
-    Title = "欢迎来到我的技术博客 👋"
-    Content = "分享技术经验、学习笔记和项目实践"
+  # Enable section folding in menu (折叠菜单)
+  BookCollapseSection = true
 
-  # 社交链接
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/sozenh"
+  # Specify root page to render child pages as menu
+  BookSection = '*'
 
-[menu]
-  [[menu.main]]
-    name = "🏠 首页"
-    url = "/"
-    weight = 1
+  # Set source repository location
+  BookRepo = 'https://github.com/sozenh/sozenh.github.io'
 
-  [[menu.main]]
-    name = "📚 归档"
-    url = "/archives/"
-    weight = 2
+  # Enable "Edit this page" links
+  BookEditPath = 'edit/main'
 
-  [[menu.main]]
-    name = "🔍 搜索"
-    url = "/search/"
-    weight = 3
+  # Configure the date format
+  BookDateFormat = '2006-01-02'
 
-  [[menu.main]]
-    name = "🏷️ 标签"
-    url = "/tags/"
-    weight = 4
+  # Enables search function
+  BookSearch = true
 
-[markup]
-  [markup.highlight]
-    style = "monokai"
-    lineNos = true
-    lineNumbersInTable = true
-  [markup.tableOfContents]
-    endLevel = 6
-    startLevel = 2
+  # Disable comments
+  BookComments = false
 
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
+  # Enable portable links
+  BookPortableLinks = true
+
+  # Enable service worker
+  BookServiceWorker = false
