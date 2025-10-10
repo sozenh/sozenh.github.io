@@ -1,0 +1,195 @@
+/* ==================== 配色选择器样式 ==================== */
+
+.color-scheme-picker {
+  position: relative;
+  display: inline-block;
+}
+
+.color-scheme-btn {
+  background: transparent;
+  border: 2px solid #e2e8f0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.color-scheme-btn:hover {
+  background: #f7fafc;
+  border-color: var(--primary-color, #667eea);
+  transform: scale(1.1);
+}
+
+.color-scheme-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* 下拉菜单 */
+.color-scheme-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.color-scheme-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-header {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 配色网格 - 紧凑布局 */
+.scheme-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.scheme-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+}
+
+.scheme-option:hover {
+  transform: scale(1.15);
+  border-color: #d1d5db;
+}
+
+.scheme-option.active {
+  border-color: var(--primary-color, #5b7c99);
+  box-shadow: 0 0 0 2px rgba(91, 124, 153, 0.2);
+}
+
+.scheme-option.active .scheme-color::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.scheme-color {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 深色模式 */
+.dark .color-scheme-btn {
+  border-color: #4a5568;
+  color: #e2e8f0;
+}
+
+.dark .color-scheme-btn:hover {
+  background: #2d3748;
+  border-color: var(--primary-light, #9f7aea);
+  color: var(--primary-light, #9f7aea);
+}
+
+.dark .color-scheme-dropdown {
+  background: #2d3748;
+  border-color: #4a5568;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dark .dropdown-header {
+  color: #f7fafc;
+  border-bottom-color: #4a5568;
+}
+
+.dark .scheme-option {
+  background: #1a202c;
+  border-color: #4a5568;
+}
+
+.dark .scheme-option:hover {
+  background: #374151;
+  border-color: var(--primary-light, #9f7aea);
+}
+
+.dark .scheme-option.active {
+  background: rgba(159, 122, 234, 0.1);
+  border-color: var(--primary-light, #9f7aea);
+}
+
+.dark .scheme-name {
+  color: #e2e8f0;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .color-scheme-dropdown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    min-width: 260px;
+  }
+
+  .color-scheme-dropdown.show {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 博客首页导航栏中的配色选择器 */
+.blog-nav .color-scheme-picker {
+  margin: 0;
+}
+
+.blog-nav .color-scheme-btn {
+  margin: 0 0.5rem;
+}
+
+/* 文档页面 header 中的配色选择器 */
+.header-controls .color-scheme-picker {
+  margin: 0;
+}
+
+.header-controls .color-scheme-btn {
+  margin: 0 0.5rem;
+}

@@ -1,0 +1,277 @@
+/**
+ * ============================================================================
+ * blog-home.css - 首页专用样式
+ * ============================================================================
+ *
+ * 职责: 仅首页的样式（通过 {{ if .IsHome }} 条件加载）
+ *
+ * 包含内容:
+ * - 英雄区域 (.hero-section, .hero-avatar)
+ * - 文章预览区 (.article-grid, .article-card)
+ * - 首页页脚 (.blog-footer)
+ * - 首页特定的深色模式和响应式设计
+ *
+ * 重要原则:
+ * - 不要在此文件中定义导航栏样式（导航栏在 custom.css 中）
+ * - 仅包含首页特有的组件
+ *
+ * 详细说明: 参见 /CSS_ORGANIZATION.md
+ * ============================================================================
+ */
+
+/* 重置 Book 主题样式 */
+body.home-page {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body.home-page .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ==================== 英雄区域 ==================== */
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-avatar {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-circle {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.avatar-circle:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* GitHub头像样式 - 填满整个圆圈 */
+.hero-avatar .avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;  /* 使用cover填满整个圆圈 */
+  /* 移除直接的边框和阴影，由外层容器提供 */
+}
+
+/* GitHub头像的容器样式 */
+.hero-avatar img.avatar-image {
+  /* 重置img默认样式，让父容器（.hero-avatar）添加圆形背景 */
+  display: block;
+  margin: 0 auto;
+}
+
+/* 当使用GitHub头像时，给.hero-avatar添加背景圆圈 */
+.hero-avatar:has(.avatar-image) {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+  margin: 0 auto;
+}
+
+.hero-avatar:has(.avatar-image):hover {
+  transform: scale(1.1);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 按钮样式继承自 common.css */
+
+/* ==================== 文章预览区 ==================== */
+.content-preview {
+  background: #f7fafc;
+  padding: 5rem 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 3rem;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.article-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.article-category {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.article-date {
+  color: #a0aec0;
+  font-size: 0.875rem;
+}
+
+.article-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-title a {
+  color: #2d3748;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-title a:hover {
+  color: #667eea;
+}
+
+.article-summary {
+  color: #718096;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ==================== 页脚 ==================== */
+.blog-footer {
+  background: #2d3748;
+  color: #cbd5e0;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.blog-footer .container {
+  max-width: 1200px;
+}
+
+.blog-footer p {
+  margin: 0.5rem 0;
+}
+
+.blog-footer a {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.blog-footer a:hover {
+  color: var(--primary-dark);
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .article-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}

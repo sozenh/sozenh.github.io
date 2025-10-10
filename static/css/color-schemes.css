@@ -1,0 +1,119 @@
+/**
+ * ============================================================================
+ * color-schemes.css - 配色方案定义
+ * ============================================================================
+ *
+ * 职责: 定义所有配色方案的 CSS 变量
+ *
+ * 包含内容:
+ * - 9种柔和低饱和度配色方案
+ * - CSS变量定义（--primary-color, --primary-dark, 等）
+ *
+ * 使用方式:
+ * - 其他CSS文件通过 var(--primary-color) 引用配色
+ * - JavaScript通过修改 [data-color-scheme] 切换配色
+ *
+ * ============================================================================
+ */
+
+/* ==================== 配色方案定义 ==================== */
+
+/* 默认配色：柔和蓝灰 (Soft Blue Gray) */
+:root {
+  --primary-color: #5b7c99;
+  --primary-dark: #4a6179;
+  --primary-light: #7a9ab8;
+  --primary-lighter: #9fb8d1;
+  --gradient-start: #5b7c99;
+  --gradient-end: #4a6179;
+}
+
+/* 配色方案 1: 雾霾蓝 (Misty Blue) */
+[data-color-scheme="misty"] {
+  --primary-color: #6b8cae;
+  --primary-dark: #536d8a;
+  --primary-light: #8ba8c4;
+  --primary-lighter: #aec5db;
+  --gradient-start: #6b8cae;
+  --gradient-end: #536d8a;
+}
+
+/* 配色方案 2: 苔藓绿 (Moss Green) */
+[data-color-scheme="moss"] {
+  --primary-color: #6b8e6f;
+  --primary-dark: #547158;
+  --primary-light: #8aab8e;
+  --primary-lighter: #acc9af;
+  --gradient-start: #6b8e6f;
+  --gradient-end: #547158;
+}
+
+/* 配色方案 3: 暖灰棕 (Warm Gray) */
+[data-color-scheme="warm"] {
+  --primary-color: #8d7b68;
+  --primary-dark: #6e5f50;
+  --primary-light: #a89885;
+  --primary-lighter: #c4b5a5;
+  --gradient-start: #8d7b68;
+  --gradient-end: #6e5f50;
+}
+
+/* 配色方案 4: 淡紫灰 (Dusty Purple) */
+[data-color-scheme="dusty"] {
+  --primary-color: #8b7e8f;
+  --primary-dark: #6d6270;
+  --primary-light: #a89bac;
+  --primary-lighter: #c5b9c9;
+  --gradient-start: #8b7e8f;
+  --gradient-end: #6d6270;
+}
+
+/* 配色方案 5: 石板青 (Slate Teal) */
+[data-color-scheme="slate"] {
+  --primary-color: #5f8a8b;
+  --primary-dark: #4a6d6e;
+  --primary-light: #7ea7a8;
+  --primary-lighter: #a0c5c6;
+  --gradient-start: #5f8a8b;
+  --gradient-end: #4a6d6e;
+}
+
+/* 配色方案 6: 沙漠米 (Desert Sand) */
+[data-color-scheme="desert"] {
+  --primary-color: #9b8b7e;
+  --primary-dark: #7c6e63;
+  --primary-light: #b6a89d;
+  --primary-lighter: #d2c6bd;
+  --gradient-start: #9b8b7e;
+  --gradient-end: #7c6e63;
+}
+
+/* 配色方案 7: 深海蓝 (Deep Ocean) */
+[data-color-scheme="ocean"] {
+  --primary-color: #4a6fa5;
+  --primary-dark: #3a5783;
+  --primary-light: #6a8ec4;
+  --primary-lighter: #8daed6;
+  --gradient-start: #4a6fa5;
+  --gradient-end: #3a5783;
+}
+
+/* 配色方案 8: 橄榄绿 (Olive Green) */
+[data-color-scheme="olive"] {
+  --primary-color: #758467;
+  --primary-dark: #5d6a52;
+  --primary-light: #93a186;
+  --primary-lighter: #b3bfa7;
+  --gradient-start: #758467;
+  --gradient-end: #5d6a52;
+}
+
+/* 配色方案 9: 炭灰色 (Charcoal) */
+[data-color-scheme="charcoal"] {
+  --primary-color: #6d7278;
+  --primary-dark: #555a5f;
+  --primary-light: #8c9196;
+  --primary-lighter: #adb1b5;
+  --gradient-start: #6d7278;
+  --gradient-end: #555a5f;
+}

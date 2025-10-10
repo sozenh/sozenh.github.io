@@ -1,0 +1,627 @@
+/**
+ * ============================================================================
+ * custom.css - 文档页面样式
+ * ============================================================================
+ *
+ * 职责: 文档页面的专用样式（侧边栏、内容区、TOC等）
+ *
+ * 包含内容:
+ * - 侧边栏样式 (.book-menu)
+ * - 文章内容区 (.markdown)
+ * - TOC 浮动按钮
+ * - 页脚样式 (.book-footer)
+ * - 文档页面响应式设计
+ *
+ * 重要原则:
+ * - 导航栏样式在 navbar.css 中
+ * - 公共样式在 common.css 中
+ * - 首页样式在 blog-home.css 中
+ *
+ * ============================================================================
+ */
+
+/* ==================== 全局布局 ==================== */
+/* 去掉容器最大宽度限制 */
+.container {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+main.container {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* 调整内容区域以适应导航栏 */
+body:not(.home-page) {
+  padding-top: 0;  /* 使用 sticky 定位，不需要额外的 padding */
+}
+
+.book-page {
+  margin-top: 0;
+}
+
+/* ==================== 侧边栏样式 ==================== */
+.book-menu {
+  background: #f7fafc;
+  border-right: 1px solid #e2e8f0;
+  flex: 0 0 14rem !important;
+  transition: none;
+  position: relative;
+}
+
+/* 隐藏侧边栏中的品牌标题 */
+.book-menu .book-brand {
+  display: none;
+}
+
+/* 左侧菜单避免被导航栏遮挡 */
+.book-menu .book-menu-content {
+  top: 70px;
+  padding-top: 1rem;
+  padding-left: 1.2rem;
+  padding-right: 0.5rem;
+  width: 100%;
+}
+
+/* 可调节宽度的拖拽手柄 */
+.menu-resize-handle {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  width: 10px;
+  background: transparent;
+  cursor: col-resize;
+  transition: background 0.2s ease;
+  z-index: 999;
+  margin-left: -5px;
+}
+
+.menu-resize-handle:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.menu-resize-handle.resizing {
+  background: var(--primary-color);
+  opacity: 0.6;
+}
+
+/* 左侧菜单项样式 */
+.book-menu nav > ul > li > a {
+  font-weight: 600;
+  color: #2d3748;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 0.25rem 0;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.book-menu nav > ul > li > a:hover {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(3px);
+}
+
+.book-menu nav > ul > li.active > a {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 菜单折叠样式 */
+.book-menu nav > ul li label {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.book-menu nav > ul li label::after {
+  content: '▶';
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.book-menu nav > ul li input.toggle:checked + label::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.book-menu nav > ul li ul {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.book-menu nav > ul li label:hover {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 4px;
+}
+
+.book-menu nav ul ul {
+  padding-left: 1rem;
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  margin-left: 0.5rem;
+}
+
+/* ==================== 内容区域 - Forest 风格 ==================== */
+.book-page {
+  background: #f5f7f3;
+}
+
+.markdown {
+  background: #fefefe;
+  border-radius: 8px;
+  padding: 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e8ebe7;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: #333;
+  margin: 1rem;
+  font-family: 'JetBrains Mono', 'SourceHanSansSC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ==================== Markdown 标题样式 ==================== */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1rem;
+  scroll-margin-top: 90px;
+}
+
+.markdown h1::before,
+.markdown h2::before,
+.markdown h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  bottom: 0.2em;
+  width: 4px;
+  background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 2px;
+}
+
+.markdown h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-top: 2.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #e2e8f0;
+  text-align: center;
+  padding-left: 0;
+}
+
+.markdown h1::before {
+  display: none;
+}
+
+.markdown h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
+}
+
+.markdown h2 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.markdown h3 {
+  font-size: 1.3rem;
+  color: #3a5a40;
+}
+
+.markdown h4 {
+  font-size: 1.15rem;
+  color: #52796f;
+  padding-left: 0;
+}
+
+.markdown h4::before {
+  content: '▸ ';
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.markdown h5, .markdown h6 {
+  font-size: 1.05rem;
+  color: #6b7280;
+  padding-left: 0;
+}
+
+.markdown h5::before,
+.markdown h6::before {
+  display: none;
+}
+
+/* ==================== Markdown 内容样式 ==================== */
+.markdown p {
+  margin: 1.2rem 0;
+  line-height: 1.75;
+  color: #333;
+}
+
+/* 代码样式 - 由 Hugo Chroma 语法高亮控制 */
+.markdown code {
+  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+.markdown pre {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* 链接样式 */
+.markdown a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.markdown a:hover {
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary-light);
+}
+
+/* 引用块样式 */
+.markdown blockquote {
+  border-left: 4px solid var(--primary-color);
+  background: #f7fafc;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+  color: #4a5568;
+}
+
+.markdown blockquote p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+}
+
+.markdown blockquote::before {
+  content: '💡';
+  font-style: normal;
+  margin-right: 0.5rem;
+}
+
+/* 列表样式 */
+.markdown ul,
+.markdown ol {
+  padding-left: 2rem;
+  margin: 1.2rem 0;
+}
+
+.markdown li {
+  margin: 0.6rem 0;
+  line-height: 1.75;
+  color: #333;
+}
+
+.markdown ul li::marker {
+  color: var(--primary-color);
+}
+
+.markdown ol li::marker {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* 表格样式 */
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.markdown table thead {
+  background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+}
+
+.markdown table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.markdown table td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #e2e8f0;
+  color: #333;
+}
+
+.markdown table tbody tr:hover {
+  background: #f7fafc;
+}
+
+/* 水平线样式 */
+.markdown hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--primary-lighter), transparent);
+  margin: 2rem 0;
+}
+
+/* 图片样式 */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 1.5rem 0;
+  border: 1px solid #e8ebe7;
+}
+
+/* 文本强调 */
+.markdown strong {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.markdown em {
+  color: #52796f;
+  font-style: italic;
+}
+
+.markdown del {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* ==================== TOC 浮动按钮 ==================== */
+.book-toc {
+  position: fixed;
+  right: -280px;
+  top: 70px;
+  width: 260px;
+  height: calc(100vh - 70px);
+  background: #fefefe;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  z-index: 900;
+  border-left: 1px solid #e8ebe7;
+}
+
+.book-toc.show {
+  right: 0;
+}
+
+.book-toc .book-toc-content {
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.toc-toggle-btn {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 2rem;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.toc-toggle-btn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+.toc-toggle-btn.active {
+  background: var(--primary-dark);
+}
+
+.book-toc nav > ul > li:first-child {
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.book-toc nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  color: #4a5568;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.book-toc nav a:hover {
+  background: #f7fafc;
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+  transform: translateX(3px);
+}
+
+.book-toc nav a.active {
+  background: #f7fafc;
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* ==================== 页脚样式 ==================== */
+.book-footer {
+  background: #2d3748;
+  color: #cbd5e0;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.book-footer a {
+  color: var(--primary-lighter);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.book-footer a:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+.book-footer .book-icon {
+  filter: brightness(0) saturate(100%) invert(88%) sepia(13%) saturate(285%) hue-rotate(178deg) brightness(95%) contrast(88%);
+  transition: all 0.3s ease;
+}
+
+.book-footer a:hover .book-icon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+/* ==================== 汉堡菜单按钮 ==================== */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #4a5568;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+#menu-control:checked ~ main .book-page .hamburger-btn span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-control:checked ~ main .book-page .hamburger-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-control:checked ~ main .book-page .hamburger-btn span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.book-menu-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.3s ease;
+}
+
+/* ==================== 移动端适配 ==================== */
+@media screen and (max-width: 56rem) {
+  /* 隐藏拖拽手柄 */
+  .menu-resize-handle {
+    display: none !important;
+  }
+
+  /* 移动端左侧菜单样式优化 */
+  .book-menu .book-menu-content {
+    width: 280px !important;
+    max-width: 85vw;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .book-menu {
+    width: 280px !important;
+    max-width: 85vw;
+  }
+
+  #menu-control:checked ~ main .book-menu .book-menu-content {
+    background: rgba(247, 250, 252, 0.98);
+    backdrop-filter: blur(10px);
+  }
+
+  /* 移动端页面背景 */
+  .book-page {
+    background: #f5f7f3 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 移动端文章内容 */
+  .markdown {
+    background: #fefefe;
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    margin: 1rem 0.5rem;
+    width: calc(100% - 1rem);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* 移动端顶部汉堡按钮区域 */
+  .book-header {
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    background: #f5f7f3;
+    position: relative;
+    z-index: 100;
+    min-height: 48px;
+  }
+
+  /* 确保汉堡按钮可见 */
+  .hamburger-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 0.5rem;
+  }
+
+  /* 移动端隐藏 TOC 按钮 */
+  .toc-toggle-btn {
+    display: none;
+  }
+
+  .book-toc {
+    display: none;
+  }
+}
