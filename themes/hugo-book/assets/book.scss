@@ -1,5 +1,6 @@
 @import "defaults";
 @import "variables";
+@import "themes/{{ default "light" .Site.Params.BookTheme }}";
 
 @import "normalize";
 @import "utils";
@@ -10,10 +11,5 @@
 @import "markdown";
 @import "shortcodes";
 
-// Custom defined styles, theme mixins also placed there
+// Custom defined styles
 @import "custom";
-
-// Select theme mixing based on site parameter
-:root {
-  @include theme-{{ default "light" .Site.Params.BookTheme }};
-}

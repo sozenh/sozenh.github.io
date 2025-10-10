@@ -1,9 +1,5 @@
 .flex {
   display: flex;
-
-  &.gap {
-    gap: $padding-16;
-  }
 }
 
 .flex-auto {
@@ -54,10 +50,6 @@
   text-align: right;
 }
 
-.text-small {
-  font-size: .875em;
-}
-
 .hidden {
   display: none;
 }
@@ -68,6 +60,12 @@ input.toggle {
   overflow: hidden;
   opacity: 0;
   position: absolute;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 @mixin spin($duration) {
@@ -89,5 +87,6 @@ input.toggle {
 
 @mixin outline {
   outline-style: auto;
-  outline-color: var(--color-link);
+  outline-color: currentColor;
+  outline-color: -webkit-focus-ring-color;
 }

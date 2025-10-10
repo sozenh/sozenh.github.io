@@ -1,6 +1,6 @@
 [
 {{- $pages := where .Site.Pages "Kind" "in" (slice "page" "section") -}}
-{{- $pages = where $pages "Params.bookSearchExclude" "!=" true -}}
+{{- $pages = where $pages "Params.booksearchexclude" "!=" true -}}
 {{/* Remove until we know why it does not work, see https://github.com/alex-shpak/hugo-book/issues/528 */}}
 {{/*- $pages = where $pages "Content" "not in" (slice nil "") -*/}}
 {{- $pages = where $pages "Content" "!=" "" -}}
@@ -10,7 +10,7 @@
     "id": {{ $index }},
     "href": "{{ $page.RelPermalink }}",
     "title": {{ (partial "docs/title" $page) | jsonify }},
-    "section": {{ (partial "docs/title" $page.Parent) | default $.Site.Title | jsonify }},
+    "section": {{ (partial "docs/title" $page.Parent) | jsonify }},
     "content": {{ $page.Plain | jsonify }}
 }
 {{- end -}}
