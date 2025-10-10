@@ -1,0 +1,39 @@
+<!-- CSS 加载顺序:
+  1. fonts.css - 字体定义
+  2. color-schemes.css - 配色方案变量
+  3. common.css - 公共基础样式
+  4. navbar.css - 导航栏样式
+  5. custom.css - 文档页面样式
+  6. blog-home.css - 首页样式（条件加载）
+  7. color-picker.css - 配色选择器
+  8. contact-modal.css - 联系弹窗
+-->
+
+<!-- 1. 字体定义 -->
+<link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}">
+
+<!-- 2. 配色方案变量（必须在其他样式之前） -->
+<link rel="stylesheet" href="{{ "css/color-schemes.css" | relURL }}">
+
+<!-- 3. 公共基础样式 -->
+<link rel="stylesheet" href="{{ "css/common.css" | relURL }}">
+
+<!-- 4. 导航栏样式 -->
+<link rel="stylesheet" href="{{ "css/navbar.css" | relURL }}">
+
+<!-- 5. 文档页面样式 -->
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+
+<!-- 6. 首页样式（条件加载） -->
+{{ if .IsHome }}
+<link rel="stylesheet" href="{{ "css/blog-home.css" | relURL }}">
+{{ end }}
+
+<!-- 7. 组件样式 -->
+<link rel="stylesheet" href="{{ "css/color-picker.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/contact-modal.css" | relURL }}">
+
+<!-- 配色选择脚本 -->
+<script defer src="{{ "js/color-scheme.js" | relURL }}"></script>
+<!-- 联系弹窗脚本 -->
+<script defer src="{{ "js/contact-modal.js" | relURL }}"></script>

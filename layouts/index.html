@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="{{ default .Site.Language.Lang .Site.LanguageCode }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+<head>
+  {{ partial "docs/html-head" . }}
+  {{ partial "docs/inject/head" . }}
+</head>
+<body dir="{{ default "ltr" .Site.Language.LanguageDirection }}" class="home-page">
+  <!-- 顶部导航栏 -->
+  {{ partial "common/navbar.html" . }}
+
+  <!-- 主内容区 -->
+  <main class="blog-main">
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-avatar">
+          {{ if eq .Site.Data.homepage.hero.avatar_type "github" }}
+          <img src="https://github.com/{{ .Site.Data.homepage.hero.github_username }}.png" alt="Avatar" class="avatar-image">
+          {{ else }}
+          <div class="avatar-circle">{{ .Site.Data.homepage.hero.avatar_emoji }}</div>
+          {{ end }}
+        </div>
+        <h1 class="hero-title">{{ .Site.Data.homepage.hero.title }}</h1>
+        <p class="hero-subtitle">{{ .Site.Data.homepage.hero.subtitle }}</p>
+        <p class="hero-description">
+          {{ .Site.Data.homepage.hero.description | safeHTML }}
+        </p>
+        <div class="hero-actions">
+          <a href="/技术/" class="btn btn-primary">{{ .Site.Data.homepage.hero.tech_button }}</a>
+          <a href="/随笔/" class="btn btn-secondary">{{ .Site.Data.homepage.hero.essay_button }}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 内容预览区 -->
+    <section class="content-preview">
+      <div class="container">
+        <h2 class="section-title">{{ .Site.Data.homepage.articles.section_title }}</h2>
+        <div class="article-grid">
+          {{ $pages := where .Site.RegularPages "Type" "in" (slice "技术" "随笔") }}
+          {{ range first (int .Site.Data.homepage.articles.max_display) $pages }}
+          <article class="article-card">
+            <div class="article-header">
+              <span class="article-category">{{ .Type }}</span>
+              {{ with .Date }}
+              <time class="article-date">{{ .Format "2006-01-02" }}</time>
+              {{ end }}
+            </div>
+            <h3 class="article-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h3>
+            {{ if .Params.summary }}
+            <p class="article-summary">{{ .Params.summary }}</p>
+            {{ else if .Summary }}
+            <p class="article-summary">{{ .Summary | truncate 100 }}</p>
+            {{ end }}
+          </article>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="blog-footer">
+      <div class="container">
+        <p>&copy; {{ now.Year }} {{ .Site.Data.homepage.nav.site_title }}. {{ .Site.Data.homepage.footer.copyright }}</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- 联系我弹窗 -->
+  {{ partial "common/contact-modal.html" . }}
+</body>
+</html>

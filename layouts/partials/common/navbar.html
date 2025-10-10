@@ -1,0 +1,47 @@
+{{/*
+  ============================================================================
+  common/navbar.html - 统一导航栏组件
+  ============================================================================
+
+  职责: 渲染网站顶部导航栏
+
+  使用位置:
+  - 首页: layouts/index.html
+  - 文档页: layouts/partials/docs/header.html
+
+  包含元素:
+  - 网站标题 (sozenh)
+  - 导航链接 (技术、随笔、联系我)
+  - 配色选择器
+
+  配置: data/homepage.yaml 中的 nav 部分
+
+  样式: /static/css/custom.css 中的 "文档页面导航栏" 区块
+
+  详细说明: 参见 /FILE_ORGANIZATION.md
+  ============================================================================
+*/}}
+
+<!-- 统一的博客导航栏 -->
+<nav class="blog-nav{{ if not .IsHome }} docs-nav{{ end }}">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/">{{ .Site.Data.homepage.nav.site_title }}</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="/技术/">{{ .Site.Data.homepage.nav.tech_link }}</a>
+      <a href="/随笔/">{{ .Site.Data.homepage.nav.essay_link }}</a>
+      <a href="#" id="contact-link">{{ .Site.Data.homepage.nav.contact_link }}</a>
+
+      <!-- 配色选择器 -->
+      <div class="color-scheme-picker" id="color-picker-container">
+        <button class="color-scheme-btn" id="color-scheme-toggle" title="选择配色方案">🎨</button>
+        <div class="color-scheme-dropdown" id="color-scheme-dropdown">
+          <div class="dropdown-header">选择配色</div>
+          <div class="scheme-grid" id="scheme-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
