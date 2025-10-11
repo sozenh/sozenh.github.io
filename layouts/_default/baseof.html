@@ -5,56 +5,52 @@
   {{ partial "docs/inject/head" . }}
 </head>
 <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}" {{ if not .IsHome }}class="docs-page"{{ end }}>
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
+<!-- 顶部导航栏 -->
+  {{ partial "common/navbar.html" . }}
 
-  {{ if not .IsHome }}
-  <!-- 文档页面导航栏 - 放在最外层，覆盖整个页面宽度 -->
-  {{ partial "docs/header" . }}
+  <!-- 右下方：TOC 按钮 -->
+  <button class="toc-toggle-btn" aria-label="目录" title="显示/隐藏目录">
+    📑
+  </button>
+
+  <!-- 左下方：菜单按钮 -->
+  <button class="menu-toggle-btn" aria-label="菜单" title="显示/隐藏菜单">
+    ☰
+  </button>
+
+  <!-- 侧边栏遮罩层（通用） -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- 左侧菜单面板 -->
+  <aside class="book-menu">
+    <div class="book-menu-content">
+      {{ template "menu" . }}
+    </div>
+  </aside>
+
+  <!-- 右侧 TOC 面板 -->
+  {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      {{ template "toc" . }}
+    </div>
+  </aside>
   {{ end }}
 
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        {{ template "menu" . }} <!-- Left menu Content -->
-      </div>
-    </aside>
-
+  <!-- 主内容区域 -->
+  <main class="container">
     <div class="book-page">
-      {{ if not .IsHome }}
-      <!-- 移动端头部：汉堡目录按钮 -->
-      <header class="book-header">
-        <div class="flex align-center justify-between">
-          <!-- 汉堡目录按钮 -->
-          <label for="menu-control" class="hamburger-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
-        </div>
-      </header>
-      {{ end }}
       {{ partial "docs/inject/content-before" . }}
-      {{ template "main" . }} <!-- Page Content -->
+      {{ template "main" . }}
       {{ partial "docs/inject/content-after" . }}
 
       <footer class="book-footer">
-        {{ template "footer" . }} <!-- Footer under page content -->
+        {{ template "footer" . }}
         {{ partial "docs/inject/footer" . }}
       </footer>
 
-      {{ template "comments" . }} <!-- Comments block -->
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
+      {{ template "comments" . }}
     </div>
-
-    {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        {{ template "toc" . }} <!-- Table of Contents -->
-      </div>
-    </aside>
-    {{ end }}
   </main>
 
   {{ partial "docs/inject/body" . }}

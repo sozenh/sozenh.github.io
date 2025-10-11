@@ -1,5 +1,5 @@
 baseURL = "https://sozenh.github.io/"
-title = "我的技术博客"
+title = "sozenh"
 theme = "hugo-book"
 
 # Book configuration

@@ -175,21 +175,3 @@
     transform: translateX(-50%) translateY(0);
   }
 }
-
-/* 博客首页导航栏中的配色选择器 */
-.blog-nav .color-scheme-picker {
-  margin: 0;
-}
-
-.blog-nav .color-scheme-btn {
-  margin: 0 0.5rem;
-}
-
-/* 文档页面 header 中的配色选择器 */
-.header-controls .color-scheme-picker {
-  margin: 0;
-}
-
-.header-controls .color-scheme-btn {
-  margin: 0 0.5rem;
-}
