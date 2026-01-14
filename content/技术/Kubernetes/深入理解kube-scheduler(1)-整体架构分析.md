@@ -1,6 +1,6 @@
 ---
-title: "深入理解 kube-scheduler(1) - 整体架构与扩展机制"
-date: 2026-01-14T18:00:00+08:00
+title: "深入理解 kube-scheduler(1)-整体架构与扩展机制"
+date: 2026-01-14T15:00:00+08:00
 draft: false
 tags: ["kubernetes", "源码解析", "kube-scheduler"]
 summary: "从源码层面深入分析 kube-scheduler 的整体架构设计、核心组件和扩展机制"

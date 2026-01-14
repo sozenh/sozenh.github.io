@@ -1,6 +1,6 @@
 ---
-title: "深入理解 kube-scheduler(3) - 核心数据结构设计"
-date: 2026-01-14T18:00:00+08:00
+title: "深入理解 kube-scheduler(3)-核心数据结构设计"
+date: 2026-01-14T15:00:00+08:00
 draft: false
 tags: ["kubernetes", "源码解析", "kube-scheduler"]
 summary: "深入剖析 kube-scheduler 的核心数据结构：SchedulingQueue、Cache 和 Snapshot"

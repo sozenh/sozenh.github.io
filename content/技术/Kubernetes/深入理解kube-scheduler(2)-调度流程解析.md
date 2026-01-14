@@ -1,6 +1,6 @@
 ---
-title: "深入理解 kube-scheduler(2) - 调度流程完全解析"
-date: 2026-01-13T18:00:00+08:00
+title: "深入理解 kube-scheduler(2)-调度流程完全解析"
+date: 2026-01-14T15:00:00+08:00
 draft: false
 tags: ["kubernetes", "源码解析", "kube-scheduler"]
 summary: "从源码层面深入走读 kube-scheduler 的核心调度流程"
