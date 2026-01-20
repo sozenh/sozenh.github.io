@@ -8,14 +8,6 @@ summary: "深入剖析 kube-scheduler 的核心数据结构：SchedulingQueue、
 
 # 深入理解 kube-scheduler(3) - 核心数据结构设计
 
-## 目录
-- [1. 概述](#1-概述)
-- [2. SchedulingQueue 调度队列](#2-schedulingqueue-调度队列)
-- [3. Cache 调度缓存](#3-cache-调度缓存)
-- [4. Snapshot 快照机制](#4-snapshot-快照机制)
-- [5. NodeInfo 节点信息聚合](#5-nodeinfo-节点信息聚合)
-- [6. 设计思想总结](#6-设计思想总结)
-
 ---
 
 ## 1. 概述
